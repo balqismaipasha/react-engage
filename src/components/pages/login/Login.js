@@ -1,6 +1,11 @@
+import { useState } from "react";
 import { Container, Form, Card, Button } from "react-bootstrap";
+import { loginAuth } from "../../../services/Login";
 
 function Login() {
+  const [Email, SetEmail] = useState();
+  const [Password, SetPassword] = useState();
+
   return (
     <Container style={{ padding: "10% 30% 10% 30%" }}>
       <Card style={{ padding: "3% 2% 3% 2%" }}>
@@ -31,7 +36,8 @@ function Login() {
                 Username / E-mail
               </label>
               <Form.Control
-                onChange={(e) => (this.email = e.target.value)}
+                ref={(input) => SetEmail(input?.value)}
+                onChange={(e) => SetEmail(e.target.value)}
                 type="email"
                 placeholder="difinite@gmail.com"
               />
@@ -43,13 +49,18 @@ function Login() {
                 Password
               </label>
               <Form.Control
-                onChange={(e) => (this.password = e.target.value)}
+                ref={(input) => SetPassword(input?.value)}
+                onChange={(e) => SetPassword(e.target.value)}
                 type="password"
                 placeholder="********"
               />
             </Form.Group>
             <div className="d-grid gap-2">
-              <Button variant="primary" size="sm">
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={(e) => Auth(Email, Password)}
+              >
                 SIGN IN
               </Button>
             </div>
@@ -58,6 +69,21 @@ function Login() {
       </Card>
     </Container>
   );
+}
+
+function Auth(Email, Password) {
+  if (Email !== "" && Password !== "") {
+    loginAuth(Email, Password)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data["error_schema"]["error_code"] === "S001") {
+          // set cookies
+          // tampilin toast berhasil
+          // pindah navigate ke home
+        } else {
+        }
+      });
+  }
 }
 
 export default Login;

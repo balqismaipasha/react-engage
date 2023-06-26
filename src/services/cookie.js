@@ -9,11 +9,11 @@ function Auth() {
       return cookie.get("user") ?? false;
     },
 
-    // set: (data) => {
-    //   const user = new User();
-    //   user.set(data);
-    //   cookie.set("user", user.get());
-    // },
+    set: (data) => {
+      const user = new User();
+      // user.set(data);
+      cookie.set("user", user.get());
+    },
 
     remove: () => {
       const ck = cookie.getAll();
