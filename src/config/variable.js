@@ -5,3 +5,6 @@ class appConfig {
 }
 
 export default appConfig;
+
+// eslint-disable-next-line no-restricted-globals
+export const cookiesSecure = location.protocol !== "https:" ? false : true;

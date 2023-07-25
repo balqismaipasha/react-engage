@@ -1,7 +1,9 @@
 import AppTopbar from "../AppTopbar";
 
 function AppLayout() {
-  <AppTopbar />;
+  return (
+  <AppTopbar />
+  );
 }
 
 export default AppLayout;

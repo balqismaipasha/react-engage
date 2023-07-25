@@ -6,7 +6,7 @@ function Auth() {
 
   let init = {
     get: () => {
-      return cookie.get("user") ?? false;
+      return cookie.get("Access Token") ? true : false;
     },
 
     // set: (data) => {
