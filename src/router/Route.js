@@ -1,7 +1,7 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import AppLayout from "../components/shared/context/AppLayout";
 import LoginComponent from "../components/pages/login/Login";
-// import Auth from "../services/CookieServices";
+import Auth from "../services/CookieServices";
 
 export class RoutePath {
   static HOME = "home";
@@ -9,13 +9,17 @@ export class RoutePath {
 }
 
 function Load() {
-  // const auth = Auth();
-  // if (!auth.check()) return <LoginComponent></LoginComponent>;
+  const auth = Auth();
+  const navigate = new useNavigate();
+  if (!auth.check()){
+    navigate('/')
+    return <LoginComponent></LoginComponent>;
+  } 
 
   return (
     <Routes>
       <Route path={RoutePath.HOME} element={<AppLayout />} />
-      <Route path={RoutePath.LOGIN} element={<LoginComponent />} />
+      {/* <Route path={RoutePath.LOGIN} element={<LoginComponent />} /> */}
     </Routes>
   );
 }

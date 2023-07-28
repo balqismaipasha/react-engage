@@ -8,8 +8,8 @@ import { Avatar } from "primereact/avatar";
 
 function AppTopbar() {
   return (
-    <Navbar collapseOnSelect expand="sm" className="bg-body-tertiary">
-      <Container>
+    <Container>
+      <Navbar collapseOnSelect expand="sm" className="bg-body-tertiary">
         <Navbar.Brand href="#">
           Engage Difinite <AppSidebar />
         </Navbar.Brand>
@@ -38,8 +38,9 @@ function AppTopbar() {
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-      </Container>
     </Navbar>
+    </Container>
+
   );
 }
 
